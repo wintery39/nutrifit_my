@@ -15,6 +15,10 @@ export class UsersRepository extends Repository<User> {
     return await this.repository.findOne({ where: { id } });
   }
 
+  async findByUserId(user_id: string): Promise<User> {
+    return await this.repository.findOne({ where: { user_id } });
+  }
+
   async findByCreatedAt(createdAt:Date): Promise<User[]>{
     return await this.repository.find({ where: {createdAt: MoreThan(createdAt) } });
   }

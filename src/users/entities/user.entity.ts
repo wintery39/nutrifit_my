@@ -1,4 +1,5 @@
 import {
+  BeforeInsert,
     Column,
     CreateDateColumn,
     DeleteDateColumn,
@@ -8,7 +9,9 @@ import {
     PrimaryGeneratedColumn,
     UpdateDateColumn,
   } from 'typeorm';
-  
+import * as bcrypt from 'bcrypt';
+
+
 @Entity({ schema: 'todo_study', name: 'todo' })
 export class User {
     @PrimaryGeneratedColumn({ name: 'id', type: 'int' })
@@ -49,4 +52,9 @@ export class User {
   
     @DeleteDateColumn()
     deletedAt: Date | null;
+
+    @BeforeInsert()
+    private beforeInsert() {
+      this.user_password = bcrypt.hashSync(this.user_password, 10);
+    }
   }

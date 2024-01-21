@@ -12,7 +12,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const user = new User();
     user.user_id = createUserDto.user_id;
-    user.user_password = await bcrypt.hash(createUserDto.user_password, 10);
+    user.user_password = createUserDto.user_password;
     user.water = createUserDto.water;
     user.protein = createUserDto.protein;
     user.mineral = createUserDto.mineral;
@@ -29,6 +29,10 @@ export class UsersService {
 
   findOne(id: number) {
     return this.userRepository.findById(id);
+  }
+
+  findByUserId(user_id: string) {
+    return this.userRepository.findByUserId(user_id);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
