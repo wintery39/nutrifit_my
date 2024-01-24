@@ -3,13 +3,27 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UsersRepository } from './users.repository';
-import * as bcrypt from 'bcrypt';
+import { AuthDTO } from 'src/auth/dto/authDto';
 
 @Injectable()
 export class UsersService {
   constructor(private readonly userRepository: UsersRepository) {}
 
-  async create(createUserDto: CreateUserDto) {
+  async create(authDTO: AuthDTO.SignUp){
+    const user = new User();
+    user.user_id = authDTO.user_id;
+    user.user_password = authDTO.user_password;
+    user.water = 0.0;
+    user.protein = 0.0;
+    user.mineral = 0.0;
+    user.fat = 0.0;
+    user.weight = 0.0;
+    user.muscle = 0.0;
+    user.todays = ''
+    return this.userRepository.save(user);
+  }
+
+  async createall(createUserDto: CreateUserDto) {
     const user = new User();
     user.user_id = createUserDto.user_id;
     user.user_password = createUserDto.user_password;
@@ -22,6 +36,7 @@ export class UsersService {
     user.todays = createUserDto.todays;
     return this.userRepository.save(user);
   }
+
 
   findAll() {
     return this.userRepository.find();

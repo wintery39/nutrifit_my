@@ -8,11 +8,12 @@ async function bootstrap() {
 
   // Swagger
   const document_config = new DocumentBuilder()
-    .setTitle('Blood-Mate Server')
-    .setDescription('Blood-Mate API Description')
+    .setTitle('GDSC project API')
+    .setDescription('GDSC project API 문서입니다.')
     .setVersion('1.0.0')
     .addBearerAuth()
     .build();
+    
   const document = SwaggerModule.createDocument(app, document_config);
   SwaggerModule.setup('docs', app, document);
 

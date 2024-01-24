@@ -9,7 +9,7 @@ import {
 
 export class CreateUserDto {
   @ApiProperty({
-    example: 'wintery39',
+    example: 'honggildong',
     description: 'user id',
   })
   @IsNotEmpty()
