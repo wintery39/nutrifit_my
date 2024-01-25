@@ -7,6 +7,7 @@ import { User } from './users/entities/user.entity';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { FoodModule } from './food/food.module';
+import { FOOD } from './food/entities/food.entity';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { FoodModule } from './food/food.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [User],
+      entities: [User, FOOD],
       migrations: [__dirname + '/src/migrations/*.ts'],
       autoLoadEntities: true,
       charset: 'utf8mb4',

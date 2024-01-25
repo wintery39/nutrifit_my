@@ -23,7 +23,7 @@ export class FOOD {
     @Column({ name: '연도', type: 'varchar', length: 255 })
     year: string;
 
-    @Column({ name: '제조사', type: 'varchar', length: 255 })
+    @Column({ name: '지역_제조사', type: 'varchar', length: 255 })
     local: string;
 
     @Column({ name: '채취시기', type: 'varchar', length: 255 })
