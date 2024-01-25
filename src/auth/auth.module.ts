@@ -10,7 +10,7 @@ import { JwtStrategy } from './security/passport.jwt';
   imports: [
     UsersModule,
     JwtModule.register({
-      secret: 'temp123secret',
+      secret: 'Nfdaspoif',
       signOptions: { expiresIn: '300s' },
     }),
     PassportModule

@@ -12,7 +12,7 @@ import {
 import * as bcrypt from 'bcrypt';
 
 
-@Entity({ schema: 'todo_study', name: 'todo' })
+@Entity({ schema: 'users_study', name: 'users' })
 export class User {
     @PrimaryGeneratedColumn({ name: 'id', type: 'int' })
     id: number;
