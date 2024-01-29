@@ -20,6 +20,12 @@ export class UsersService {
     user.weight = 0.0;
     user.muscle = 0.0;
     user.todays = ''
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+
     return this.userRepository.save(user);
   }
 
@@ -34,6 +40,11 @@ export class UsersService {
     user.weight = createUserDto.weight;
     user.muscle = createUserDto.muscle;
     user.todays = createUserDto.todays;
+    user.today_energy = createUserDto.today_energy;
+    user.today_water = createUserDto.today_water;
+    user.today_protein = createUserDto.today_protein;
+    user.today_fat = createUserDto.today_fat;
+    user.today_carbohydrate = createUserDto.today_carbohydrate;
     return this.userRepository.save(user);
   }
 

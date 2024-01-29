@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, ConflictException, U
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthDTO } from 'src/auth/dto/authDto';
 import { AuthGuard } from 'src/auth/security/auth.guard';
 
@@ -53,14 +53,20 @@ export class UsersController {
   }
 
   @ApiOperation({ summary: 'Update User' })
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @UseGuards(AuthGuard)
+  @Patch('/update')
+  update(@Req() req: any, @Body() updateUserDto: UpdateUserDto) {
+    const user = req.user;
+    this.usersService.update(+user.id, updateUserDto);
+    
+    return '수정 완료';
   }
 
   @ApiOperation({ summary: 'Remove User' })
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @UseGuards(AuthGuard)
+  @Delete('/delete')
+  remove(@Req() req: any) {
+    const user = req.user;
+    return this.usersService.remove(+user.id);
   }
 }

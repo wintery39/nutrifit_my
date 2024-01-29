@@ -44,6 +44,21 @@ export class User {
     @Column({ name: 'todays', type: 'varchar', length: 1000 })
     todays: string;
 
+    @Column({ name: 'today_energy', type: 'double'})
+    today_energy: number;
+
+    @Column({ name: 'today_water', type: 'double'})
+    today_water: number;
+
+    @Column({ name: 'today_protein', type: 'double'})
+    today_protein: number;
+
+    @Column({ name: 'today_fat', type: 'double'})
+    today_fat: number;
+
+    @Column({ name: 'today_carbohydrate', type: 'double'})
+    today_carbohydrate: number;
+
     @CreateDateColumn()
     createdAt: Date;
   
