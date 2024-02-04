@@ -2,9 +2,17 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
+import * as expressBasicAuth from 'express-basic-auth';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const basicAuthMiddleware = expressBasicAuth({
+    challenge: true,
+    users: {
+      [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
+    },
+  });
+  app.use(['/docs'], basicAuthMiddleware); 
 
   // Swagger
   const document_config = new DocumentBuilder()
