@@ -12,4 +12,8 @@ export class FoodService {
   findbyNO(NO: number) {
     return this.foodRepository.findByNO(NO);    
   }
+
+  findbySearch(search: any) {
+    return this.foodRepository.findBySearch(search);
+  }
 }

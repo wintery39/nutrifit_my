@@ -74,9 +74,7 @@ export class CreateUserDto {
     example: '12345_1/23456_3',
     description: '먹은거 저장',
   })
-  @IsNotEmpty()
   @IsString()
-  @MinLength(1)
   @MaxLength(1000)
   todays!: string;
 

@@ -67,6 +67,7 @@ export class UsersController {
   @Delete('/delete')
   remove(@Req() req: any) {
     const user = req.user;
-    return this.usersService.remove(+user.id);
+    this.usersService.remove(+user.id)
+    return '제거 완료';
   }
 }
