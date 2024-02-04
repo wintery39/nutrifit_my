@@ -26,7 +26,7 @@ export class UsersController {
     return '회원가입성공';
   }
 
-  @ApiOperation({ summary: 'jwt guard' })
+  @ApiOperation({ summary: 'jwt guard (jwt O)' })
   @UseGuards(AuthGuard)
   @Get('/profile')
   async getProfile(@Req() req: any) {
@@ -52,7 +52,7 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @ApiOperation({ summary: 'Update User' })
+  @ApiOperation({ summary: 'Update User (jwt O)' })
   @UseGuards(AuthGuard)
   @Patch('/update')
   update(@Req() req: any, @Body() updateUserDto: UpdateUserDto) {
@@ -62,7 +62,7 @@ export class UsersController {
     return '수정 완료';
   }
 
-  @ApiOperation({ summary: 'Remove User' })
+  @ApiOperation({ summary: 'Remove User (jwt O)' })
   @UseGuards(AuthGuard)
   @Delete('/delete')
   remove(@Req() req: any) {
