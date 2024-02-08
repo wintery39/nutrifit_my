@@ -12,7 +12,7 @@ async function bootstrap() {
       [process.env.SWAGGER_USER]: process.env.SWAGGER_PASSWORD,
     },
   });
-  app.use(['/docs'], basicAuthMiddleware); 
+  app.use(['/docs'], basicAuthMiddleware);
 
   // Swagger
   const document_config = new DocumentBuilder()

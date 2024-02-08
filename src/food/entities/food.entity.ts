@@ -19,12 +19,9 @@ export class FOOD {
 
     @Column({ name: '식품명', type: 'varchar', length: 255 })
     food_name: string;
-  
-    @Column({ name: '연도', type: 'varchar', length: 255 })
-    year: string;
 
-    @Column({ name: '채취시기', type: 'varchar', length: 255 })
-    season: string;
+    @Column({ name: '지역_제조사', type: 'varchar', length: 255 })
+    region: string;
 
     @Column({ name: '식품대분류', type: 'varchar', length: 255 })
     food_big_group: string;
@@ -32,11 +29,14 @@ export class FOOD {
     @Column({ name: '식품상세분류', type: 'varchar', length: 255 })
     food_small_group: string;
 
-    @Column({ name: '일회제공량', type: 'varchar', length: 255 })
-    once: string;
-
     @Column({ name: '내용량_단위', type: 'varchar', length: 255 })
     content_unit: string;
+
+    @Column({ name: '연도', type: 'int'})
+    year: number;
+
+    @Column({ name: '일회제공량', type: 'float'})
+    once: number;
 
     @Column({ name: '총내용량_g', type: 'float' })
     content_g: number;
@@ -62,48 +62,6 @@ export class FOOD {
     @Column({ name: '총당류_g', type: 'float' })
     sugar_g: number;
 
-    @Column({ name: '자당_g', type: 'float' })
-    fructose_g: number;
-
-    @Column({ name: '포도당_g', type: 'float' })
-    glucose_g: number;
-
-    @Column({ name: '과당_g', type: 'float' })
-    galactose_g: number;
-
-    @Column({ name: '유당_g', type: 'float' })
-    lactose_g: number;
-
-    @Column({ name: '맥아당_g', type: 'float' })
-    maltose_g: number;
-
-    @Column({ name: '총_식이섬유_g', type: 'float' })
-    dietary_fiber_g: number;
-
     @Column({ name: '칼슘_mg', type: 'float' })
     calcium_mg: number;
-
-    @Column({ name: '철_mg', type: 'float' })
-    iron_mg: number;
-
-    @Column({ name: '철_ug', type: 'float' })
-    iron_ug: number;
-
-    @Column({ name: '마그네슘_mg', type: 'float' })
-    magnesium_mg: number;
-
-    @Column({ name: '인_mg', type: 'float' })
-    phosphorus_mg: number;
-
-    @Column({ name: '칼륨_mg', type: 'float' })
-    potassium_mg: number;
-
-    @Column({ name: '나트륨_mg', type: 'float' })
-    sodium_mg: number;
-
-    @Column({ name: '아연_mg', type: 'float' })
-    zinc_mg: number;
-
-    @Column({ name: '구리_mg', type: 'float' })
-    copper_mg: number;
 }

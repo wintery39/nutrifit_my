@@ -21,9 +21,33 @@ export class UsersController {
       throw new ConflictException('이미 존재하는 아이디입니다.');
     }
 
+    if (user_id.length < 4 || user_id.length > 20) {
+      throw new UnauthorizedException('아이디는 4~20자로 입력해주세요.');
+    }
     const userEntity = await this.usersService.create(authDTO);
     
     return '회원가입성공';
+  }
+
+  @ApiOperation({ summary: 'check id' })
+  @Post('/checkid')
+  async checkid(@Body() authID: AuthDTO.checkID) {
+    const {user_id} = authID;
+
+    const hasId = await this.usersService.findByUserId(user_id);
+    
+    if (hasId) {
+      throw new ConflictException('이미 존재하는 아이디입니다.');
+    }
+    
+    return '사용 가능한 아이디입니다.';
+  }
+
+  @ApiOperation({ summary: 'check password' })
+  @Post('/checkpassword')
+  async checkpassword(@Body() authPassword: AuthDTO.checkPassword) {
+    const {user_password} = authPassword;
+    return '사용 가능한 비밀번호입니다.';
   }
 
   @ApiOperation({ summary: 'jwt guard (jwt O)' })

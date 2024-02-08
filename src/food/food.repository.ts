@@ -12,19 +12,28 @@ export class FoodRepository extends Repository<FOOD> {
     super(repository.target, repository.manager);
   }
 
-  async findByName(food_name: string) {
-    return await this.repository.find({where: {food_name: Like(`%${food_name}%`)}});
+  async foodSearch(food_name: string, group: string) {
+    if (group) {
+      return await this.repository.find({ where: { food_name: Like(`%${food_name}%`), DB_group: Like(`${group}`) } });
+    } else{
+      return await this.repository.find({ where: { food_name: Like(`%${food_name}%`) } });
+    }
   }
 
   async findByNO(NO: number): Promise<FOOD> {
     return await this.repository.findOne({ where: { NO } });
   }
 
-  async findBySearch(search: searchFoodDto) {
+  async recommendBySearch(search: searchFoodDto) {
     var key = 5;
+    var li = [];
     switch (search.lack_nutrient) {
       case 1:
-        return await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), water_g: LessThan(search.water_g*((100+key)/100)), protein_g: LessThan(search.protein_g*((100+key)/100)), fat_g: LessThan(search.fat_g*((100+key)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+key)/100))}]});
+        while(li.length < 5 && key < 15){
+          li = await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), water_g: LessThan(search.water_g*((100+key)/100)), protein_g: LessThan(search.protein_g*((100+key)/100)), fat_g: LessThan(search.fat_g*((100+key)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+key)/100))}]});
+          key+=2;
+        }
+        return li;
       case 2:
         return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal*((100+key)/100)), water_g: Between(search.water_g*((100-key)/100),search.water_g*((100+key)/100)), protein_g: LessThan(search.protein_g*((100+key)/100)), fat_g: LessThan(search.fat_g*((100+key)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+key)/100))}]});
       case 3:

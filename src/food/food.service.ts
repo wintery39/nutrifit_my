@@ -5,15 +5,15 @@ import { FoodRepository } from './food.repository';
 export class FoodService {
   constructor(private readonly foodRepository: FoodRepository) {}
 
-  findbyName(food_name: string) {
-    return this.foodRepository.findByName(food_name);    
+  foodSearch(food_name: string, group: string) {
+    return this.foodRepository.foodSearch(food_name, group);    
   }
 
   findbyNO(NO: number) {
     return this.foodRepository.findByNO(NO);    
   }
 
-  findbySearch(search: any) {
-    return this.foodRepository.findBySearch(search);
+  recommendbySearch(search: any) {
+    return this.foodRepository.recommendBySearch(search);
   }
 }

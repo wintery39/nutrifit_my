@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { searchFoodDto } from './dto/search-food.dto';
 
@@ -6,9 +6,9 @@ import { searchFoodDto } from './dto/search-food.dto';
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
 
-  @Get(':food_name')
-  findOne(@Param('food_name') food_name: string) {
-    return this.foodService.findbyName(food_name);
+  @Get('foodSearch')
+  foodSearch(@Query('food_name') food_name?: string, @Query('DB_group') group?: string) {
+    return this.foodService.foodSearch(food_name, group);
   }
 
   @Get('NO/:NO')
@@ -16,8 +16,8 @@ export class FoodController {
     return this.foodService.findbyNO(NO);
   }
 
-  @Post('searchfood')
-  findBySearch(@Body() search: searchFoodDto) {
-    return this.foodService.findbySearch(search);
+  @Post('recommendfood')  
+  recommendBySearch(@Body() search: searchFoodDto) {
+    return this.foodService.recommendbySearch(search);
   }
 }
