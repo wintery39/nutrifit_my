@@ -5,46 +5,40 @@ import { IsNotEmpty, IsString, MaxLength } from 'class-validator';
 
 export class UpdateUserDto {
     @ApiProperty({
-        example: 0,
-        description: '체수분',
-    })
-    @IsNotEmpty()
-    water!: number;
-
-    @ApiProperty({
-        example: 0,
-        description: '단백질',
+        example: 180.1,
+        description: 'user height',
       })
-    @IsNotEmpty()
-    protein!: number;
+      @IsNotEmpty()
+      height!: number;
     
-    @ApiProperty({
-        example: 0,
-        description: '무기질',
-    })
-    @IsNotEmpty()
-    mineral!: number;
-
-    @ApiProperty({
-        example: 0,
-        description: '체지방',
-    })
-    @IsNotEmpty()
-    fat!: number;
-
-    @ApiProperty({
-        example: 0,
-        description: '체중',
-    })
-    @IsNotEmpty()
-    weight!: number;
-
-    @ApiProperty({
-        example: 0,
-        description: '골격근량',
-    })
-    @IsNotEmpty()
-    muscle!: number;
+      @ApiProperty({
+        example: 70.1,
+        description: 'user weight',
+      })
+      @IsNotEmpty()
+      weight!: number;
+    
+      @ApiProperty({
+        example: 25,
+        description: 'user age',
+      })
+      @IsNotEmpty()
+      age!: number;
+    
+      @ApiProperty({
+        example: 1,
+        description: 'user activity',
+      })
+      @IsNotEmpty()
+      activity!: number;
+    
+      @ApiProperty({
+        example: '남',
+        description: 'user gender',
+      })
+      @IsNotEmpty()
+      @IsString()
+      gender!: string;
 
     @ApiProperty({
         example: '',

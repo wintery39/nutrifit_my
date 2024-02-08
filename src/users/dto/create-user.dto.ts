@@ -29,46 +29,40 @@ export class CreateUserDto {
   user_password!: string;
 
   @ApiProperty({
-    example: 0,
-    description: '체수분',
+    example: 180.1,
+    description: 'user height',
   })
   @IsNotEmpty()
-  water!: number;
+  height!: number;
 
   @ApiProperty({
-    example: 0,
-    description: '단백질',
-  })
-  @IsNotEmpty()
-  protein!: number;
-
-  @ApiProperty({
-    example: 0,
-    description: '무기질',
-  })
-  @IsNotEmpty()
-  mineral!: number;
-
-  @ApiProperty({
-    example: 0,
-    description: '체지방',
-  })
-  @IsNotEmpty()
-  fat!: number;
-
-  @ApiProperty({
-    example: 0,
-    description: '체중',
+    example: 70.1,
+    description: 'user weight',
   })
   @IsNotEmpty()
   weight!: number;
 
   @ApiProperty({
-    example: 0,
-    description: '골격근량',
+    example: 25,
+    description: 'user age',
   })
   @IsNotEmpty()
-  muscle!: number;
+  age!: number;
+
+  @ApiProperty({
+    example: 1,
+    description: 'user activity',
+  })
+  @IsNotEmpty()
+  activity!: number;
+
+  @ApiProperty({
+    example: '남',
+    description: 'user gender',
+  })
+  @IsNotEmpty()
+  @IsString()
+  gender!: string;
 
   @ApiProperty({
     example: '12345_1/23456_3',

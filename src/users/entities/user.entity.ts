@@ -23,40 +23,37 @@ export class User {
     @Column({ name: 'password', type: 'varchar', length: 100 })
     user_password: string;
 
-    @Column({ name: 'water', type: 'double'})
-    water: number;
+    @Column({ name: 'height', type: 'float'})
+    height: number;
 
-    @Column({ name: 'protein', type: 'double'})
-    protein: number;
-
-    @Column({ name: 'mineral', type: 'double'})
-    mineral: number;
-
-    @Column({ name: 'fat', type: 'double'})
-    fat: number;
-
-    @Column({ name: 'weight', type: 'double'})
+    @Column({ name: 'weight', type: 'float'})
     weight: number;
 
-    @Column({ name: 'muscle', type: 'double'})
-    muscle: number;
+    @Column({ name: 'age', type: 'int'})
+    age: number;
+
+    @Column({ name: 'activity', type: 'int'})
+    activity: number;
+
+    @Column({ name: 'gender', type: 'varchar', length: 10})
+    gender: string;
 
     @Column({ name: 'todays', type: 'varchar', length: 1000 })
     todays: string;
 
-    @Column({ name: 'today_energy', type: 'double'})
+    @Column({ name: 'today_energy', type: 'float'})
     today_energy: number;
 
-    @Column({ name: 'today_water', type: 'double'})
+    @Column({ name: 'today_water', type: 'float'})
     today_water: number;
 
-    @Column({ name: 'today_protein', type: 'double'})
+    @Column({ name: 'today_protein', type: 'float'})
     today_protein: number;
 
-    @Column({ name: 'today_fat', type: 'double'})
+    @Column({ name: 'today_fat', type: 'float'})
     today_fat: number;
 
-    @Column({ name: 'today_carbohydrate', type: 'double'})
+    @Column({ name: 'today_carbohydrate', type: 'float'})
     today_carbohydrate: number;
 
     @CreateDateColumn()
