@@ -7,38 +7,38 @@ export class UpdateUserDto {
     @ApiProperty({
         example: 180.1,
         description: 'user height',
-      })
-      @IsNotEmpty()
-      height!: number;
-    
-      @ApiProperty({
+    })
+    @IsNotEmpty()
+    height!: number;
+
+    @ApiProperty({
         example: 70.1,
         description: 'user weight',
-      })
-      @IsNotEmpty()
-      weight!: number;
-    
-      @ApiProperty({
+    })
+    @IsNotEmpty()
+    weight!: number;
+
+    @ApiProperty({
         example: 25,
         description: 'user age',
-      })
-      @IsNotEmpty()
-      age!: number;
-    
-      @ApiProperty({
+    })
+    @IsNotEmpty()
+    age!: number;
+
+    @ApiProperty({
         example: 1,
         description: 'user activity',
-      })
-      @IsNotEmpty()
-      activity!: number;
-    
-      @ApiProperty({
+    })
+    @IsNotEmpty()
+    activity!: number;
+
+    @ApiProperty({
         example: '남',
         description: 'user gender',
-      })
-      @IsNotEmpty()
-      @IsString()
-      gender!: string;
+    })
+    @IsNotEmpty()
+    @IsString()
+    gender!: string;
 
     @ApiProperty({
         example: '',
