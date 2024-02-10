@@ -4,6 +4,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UsersRepository } from './users.repository';
 import { AuthDTO } from 'src/auth/dto/authDto';
+import { UpdateTodayDto } from './dto/update-today.dto';
 
 @Injectable()
 export class UsersService {
@@ -13,10 +14,10 @@ export class UsersService {
     const user = new User();
     user.user_id = authDTO.user_id;
     user.user_password = authDTO.user_password;
-    user.height = 180.1;
-    user.weight = 70.1;
-    user.age = 25;
-    user.activity = 1;
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
     user.gender = '남';
     user.todays = ''
     user.today_energy = 0.0;
@@ -59,8 +60,12 @@ export class UsersService {
     return this.userRepository.findByUserId(user_id);
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
+  updateUser(id: number, updateUserDto: UpdateUserDto) {
     return this.userRepository.update(id, updateUserDto);
+  }
+
+  updateTodays(id: number, updateTodayDto: UpdateTodayDto) {
+    return this.userRepository.update(id, updateTodayDto);
   }
 
   remove(id: number) {

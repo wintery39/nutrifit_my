@@ -5,6 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthDTO } from 'src/auth/dto/authDto';
 import { AuthGuard } from 'src/auth/security/auth.guard';
+import { UpdateTodayDto } from './dto/update-today.dto';
 
 @ApiTags('users')
 @Controller('users')
@@ -78,10 +79,20 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Update User (jwt O)' })
   @UseGuards(AuthGuard)
-  @Patch('/update')
-  update(@Req() req: any, @Body() updateUserDto: UpdateUserDto) {
+  @Patch('/update/user')
+  updateUser(@Req() req: any, @Body() updateUserDto: UpdateUserDto) {
     const user = req.user;
-    this.usersService.update(+user.id, updateUserDto);
+    this.usersService.updateUser(+user.id, updateUserDto);
+    
+    return '수정 완료';
+  }
+
+  @ApiOperation({ summary: 'Update User (jwt O)' })
+  @UseGuards(AuthGuard)
+  @Patch('/update/todays')
+  updateTodays(@Req() req: any, @Body() updateTodayDto: UpdateTodayDto) {
+    const user = req.user;
+    this.usersService.updateTodays(+user.id, updateTodayDto);
     
     return '수정 완료';
   }

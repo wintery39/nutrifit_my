@@ -12,7 +12,7 @@ import {
 import * as bcrypt from 'bcrypt';
 
 
-@Entity({ schema: 'users', name: 'users_info' })
+@Entity({ schema: 'users', name: 'users' })
 export class User {
     @PrimaryGeneratedColumn({ name: 'id', type: 'int' })
     id: number;
@@ -28,11 +28,11 @@ export class User {
 
     @Column({ name: 'weight', type: 'float'})
     weight: number;
-
+  
     @Column({ name: 'age', type: 'int'})
     age: number;
 
-    @Column({ name: 'activity', type: 'int'})
+    @Column({ name: 'activity', type: 'float'})
     activity: number;
 
     @Column({ name: 'gender', type: 'varchar', length: 10})
