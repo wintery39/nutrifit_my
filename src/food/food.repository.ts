@@ -14,9 +14,17 @@ export class FoodRepository extends Repository<FOOD> {
 
   async foodSearch(food_name: string, group: string) {
     if (group) {
-      return await this.repository.find({ where: { food_name: Like(`%${food_name}%`), DB_group: Like(`${group}`) } });
+      var li1 = await this.repository.find({ where: { food_name: food_name, DB_group: Like(`${group}`) }});
+      var li2 = await this.repository.find({ where: { food_name: Like(`%${food_name}%`), DB_group: Like(`${group}`) }});
+
+      var li3 = li1.concat(li2);
+      return li3;
     } else{
-      return await this.repository.find({ where: { food_name: Like(`%${food_name}%`) } });
+      var li1 = await this.repository.find({ where: { food_name: food_name } });
+      var li2 = await this.repository.find({ where: { food_name: Like(`%${food_name}%`) } });
+      
+      var li3 = li1.concat(li2);
+      return li3;
     }
   }
 
