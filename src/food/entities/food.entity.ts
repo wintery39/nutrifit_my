@@ -20,6 +20,9 @@ export class FOOD {
     @Column({ name: '식품명', type: 'varchar', length: 255 })
     food_name: string;
 
+    @Column({ name: '연도', type: 'int'})
+    year: number;
+
     @Column({ name: '지역_제조사', type: 'varchar', length: 255 })
     region: string;
 
@@ -29,14 +32,11 @@ export class FOOD {
     @Column({ name: '식품상세분류', type: 'varchar', length: 255 })
     food_small_group: string;
 
-    @Column({ name: '내용량_단위', type: 'varchar', length: 255 })
-    content_unit: string;
-
-    @Column({ name: '연도', type: 'int'})
-    year: number;
-
     @Column({ name: '일회제공량', type: 'float'})
     once: number;
+
+    @Column({ name: '내용량_단위', type: 'varchar', length: 255 })
+    content_unit: string;
 
     @Column({ name: '총내용량_g', type: 'float' })
     content_g: number;
