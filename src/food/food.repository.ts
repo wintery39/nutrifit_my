@@ -15,21 +15,42 @@ export class FoodRepository extends Repository<FOOD> {
   async foodSearch(food_name: string, group: string) {
     if (group) {
       var li1 = await this.repository.find({ where: { food_name: food_name, DB_group: Like(`${group}`) }});
-      var li2 = await this.repository.find({ where: { food_name: Like(`%${food_name}%`), DB_group: Like(`${group}`) }});
+      var li2 = await this.repository.find({ where: { food_name: Like(`%_${food_name}`), DB_group: Like(`${group}`) } });
+      var li3 = await this.repository.find({ where: { food_name: Like(`${food_name}_%`), DB_group: Like(`${group}`) } });
+      var li4 = await this.repository.find({ where: { food_name: Like(`%_${food_name}_%`), DB_group: Like(`${group}`) } });
 
-      var li3 = li1.concat(li2);
-      return li3;
+      return li1.concat(li2, li3, li4);
     } else{
       var li1 = await this.repository.find({ where: { food_name: food_name } });
-      var li2 = await this.repository.find({ where: { food_name: Like(`%${food_name}%`) } });
+      var li2 = await this.repository.find({ where: { food_name: Like(`%_${food_name}`) } });
+      var li3 = await this.repository.find({ where: { DB_group: Like(`${food_name}_%`) } });
+      var li4 = await this.repository.find({ where: { food_name: Like(`%_${food_name}_%`) } });
       
-      var li3 = li1.concat(li2);
-      return li3;
+      return li1.concat(li2, li3, li4);
     }
   }
 
   async findByNO(NO: number): Promise<FOOD> {
     return await this.repository.findOne({ where: { NO } });
+  }
+
+  async recommendBySearch2(search: searchFoodDto) {
+    const lack_min = 5, lack_max = 11;
+    const norm = (lack_min+lack_max)/2;
+    switch (search.lack_nutrient) {
+      case 1:
+        return await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal/lack_max, search.energy_kcal/lack_min), water_g: LessThan( search.water_g/norm), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
+      case 2:
+        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), water_g: Between(search.water_g/lack_max, search.water_g/lack_min), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
+      case 3:
+        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), water_g: LessThan(search.water_g/norm), protein_g: Between(search.protein_g/lack_max, search.protein_g/lack_min), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
+      case 4:
+        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), water_g: LessThan(search.water_g/norm), protein_g: LessThan(search.protein_g/norm), fat_g: Between(search.fat_g/lack_max, search.fat_g/lack_min), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
+      case 5:
+        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), water_g: LessThan(search.water_g/norm), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: Between(search.carbohydrate_g/lack_max, search.carbohydrate_g/lack_min)}]});
+      default:
+        return 'input error';
+    }
   }
 
   async recommendBySearch(search: searchFoodDto) {

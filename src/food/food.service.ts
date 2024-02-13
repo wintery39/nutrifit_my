@@ -14,6 +14,6 @@ export class FoodService {
   }
 
   recommendbySearch(search: any) {
-    return this.foodRepository.recommendBySearch(search);
+    return this.foodRepository.recommendBySearch2(search);
   }
 }
