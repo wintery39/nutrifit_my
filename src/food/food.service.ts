@@ -34,11 +34,11 @@ export class FoodService {
       i++;
     }
     return{
-      energy_kcal: data[0].toFixed(2),
-      water_g: data[1].toFixed(2),
-      protein_g: data[2].toFixed(2),
-      fat_g: data[3].toFixed(2),
-      carbohydrate_g: data[4].toFixed(2),
+      energy_kcal: Number(data[0].toFixed(2)),
+      water_g: Number(data[1].toFixed(2)),
+      protein_g: Number(data[2].toFixed(2)),
+      fat_g: Number(data[3].toFixed(2)),
+      carbohydrate_g: Number(data[4].toFixed(2)),
     };
   }
 }

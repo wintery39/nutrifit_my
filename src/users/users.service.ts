@@ -7,6 +7,7 @@ import { AuthDTO } from 'src/auth/dto/authDto';
 import { UpdateTodayDto } from './dto/update-today.dto';
 import { todaysFoodDto } from 'src/food/dto/today-food.dto';
 import { FoodService } from 'src/food/food.service';
+import { Cron } from '@nestjs/schedule';
 
 @Injectable()
 export class UsersService {
@@ -75,15 +76,26 @@ export class UsersService {
     var updateTodayDto = new UpdateTodayDto();
     const data = await this.foodService.todaysfood(todaysFood.todaysfood)
     updateTodayDto.todays = todaysFood.todaysfood;
-    updateTodayDto.today_energy = Number(data.energy_kcal);
-    updateTodayDto.today_water = Number(data.water_g);
-    updateTodayDto.today_protein = Number(data.protein_g);
-    updateTodayDto.today_fat = Number(data.fat_g);
-    updateTodayDto.today_carbohydrate = Number(data.carbohydrate_g);
+    updateTodayDto.today_energy = data.energy_kcal;
+    updateTodayDto.today_water = data.water_g;
+    updateTodayDto.today_protein = data.protein_g;
+    updateTodayDto.today_fat = data.fat_g;
+    updateTodayDto.today_carbohydrate = data.carbohydrate_g;
     return this.userRepository.update(id, updateTodayDto);
   }
 
   remove(id: number) {
     return this.userRepository.delete(id);
+  }
+
+  @Cron('0 0 5 * * *')
+  async handleCron() {
+    const data = await this.userRepository.find();
+    var i = 0;
+    while(i < Object.keys(data).length){
+      this.userRepository.update(data[i].id, {todays: '', today_energy: 0.0, today_water: 0.0, today_protein: 0.0, today_fat: 0.0, today_carbohydrate: 0.0});
+      i++;
+    }
+    return;
   }
 }
