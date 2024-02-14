@@ -35,16 +35,16 @@ export class FoodService {
     const foods = todaysfood.split(',');
     var i = 0;
     var nowfood = [];
-    var data = [1,1,1,1,1];
+    var data = [0,0,0,0,0];
     var temp;
     while (i < foods.length) {
       nowfood = foods[i].split('_');
       temp = await this.foodRepository.findByNO(Number(nowfood[0]));
-      data[0] += (temp.energy_kcal) * (Number(nowfood[1])/temp.once);
-      data[1] += (temp.water_g/temp.once) * (Number(nowfood[1])/temp.once);
-      data[2] += (temp.protein_g/temp.once) * (Number(nowfood[1])/temp.once);
-      data[3] += (temp.fat_g/temp.once) * (Number(nowfood[1])/temp.once);
-      data[4] += (temp.carbohydrate_g/temp.once) * (Number(nowfood[1])/temp.once);
+      data[0] += Number(nowfood[1]) < 0 ? 0 :(temp.energy_kcal) * (Number(nowfood[1])/temp.once);
+      data[1] += Number(nowfood[1]) < 0 ? 0 :(temp.water_g) * (Number(nowfood[1])/temp.once);
+      data[2] += Number(nowfood[1]) < 0 ? 0 :(temp.protein_g) * (Number(nowfood[1])/temp.once);
+      data[3] += Number(nowfood[1]) < 0 ? 0 :(temp.fat_g) * (Number(nowfood[1])/temp.once);
+      data[4] += Number(nowfood[1]) < 0 ? 0 :(temp.carbohydrate_g) * (Number(nowfood[1])/temp.once);
       i++;
     }
     return{
