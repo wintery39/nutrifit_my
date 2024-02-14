@@ -98,6 +98,16 @@ export class UsersController {
     return '수정 완료';
   }
 
+  @ApiOperation({ summary: 'Update User by todaysfood (jwt O)' })
+  @UseGuards(AuthGuard)
+  @Patch('/update/todaysfood')
+  updateTodaysFood(@Req() req: any, @Body() todaysfood: todaysFoodDto) {
+    const user = req.user;
+    this.usersService.updateTodaysFood(+user.id, todaysfood);
+    
+    return '수정 완료';
+  }
+
   @ApiOperation({ summary: 'Remove User (jwt O)' })
   @UseGuards(AuthGuard)
   @Delete('/delete')

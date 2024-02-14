@@ -5,10 +5,13 @@ import { User } from './entities/user.entity';
 import { UsersRepository } from './users.repository';
 import { AuthDTO } from 'src/auth/dto/authDto';
 import { UpdateTodayDto } from './dto/update-today.dto';
+import { todaysFoodDto } from 'src/food/dto/today-food.dto';
+import { FoodService } from 'src/food/food.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly userRepository: UsersRepository) {}
+  constructor(private readonly userRepository: UsersRepository,
+    private readonly foodService: FoodService) {}
 
   async create(authDTO: AuthDTO.SignUp){
     const user = new User();
@@ -65,6 +68,18 @@ export class UsersService {
   }
 
   updateTodays(id: number, updateTodayDto: UpdateTodayDto) {
+    return this.userRepository.update(id, updateTodayDto);
+  }
+
+  async updateTodaysFood(id: number, todaysFood: todaysFoodDto) {
+    var updateTodayDto = new UpdateTodayDto();
+    const data = await this.foodService.todaysfood(todaysFood.todaysfood)
+    updateTodayDto.todays = todaysFood.todaysfood;
+    updateTodayDto.today_energy = Number(data.energy_kcal);
+    updateTodayDto.today_water = Number(data.water_g);
+    updateTodayDto.today_protein = Number(data.protein_g);
+    updateTodayDto.today_fat = Number(data.fat_g);
+    updateTodayDto.today_carbohydrate = Number(data.carbohydrate_g);
     return this.userRepository.update(id, updateTodayDto);
   }
 
