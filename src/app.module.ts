@@ -8,6 +8,7 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { FoodModule } from './food/food.module';
 import { FOOD } from './food/entities/food.entity';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { FOOD } from './food/entities/food.entity';
       logging: process.env.NODE_ENV !== 'production',
       keepConnectionAlive: true,
     }),
+    ScheduleModule.forRoot(),
     AuthModule,
     UsersModule,
     FoodModule,

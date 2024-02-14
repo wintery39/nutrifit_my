@@ -36,11 +36,4 @@ export class searchFoodDto{
     })
     @IsNotEmpty()
     carbohydrate_g: number;
-
-    @ApiProperty({
-        example: 1,
-        description: '부족영양소',
-    })
-    @IsNotEmpty()
-    lack_nutrient: number;
 }
