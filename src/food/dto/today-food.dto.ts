@@ -6,6 +6,5 @@ export class todaysFoodDto{
         example: '1_100,2_100,3_100',
         description: '오늘 먹은 음식',
     })
-    @IsNotEmpty()
     todaysfood: string;
 }
