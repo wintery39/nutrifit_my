@@ -17,7 +17,6 @@ export class FoodService {
     var date = new Date();
     var now = date.getHours();
     var chk = 1;
-    console.log(now);
     if (2 <now && now < 10) {
       chk = 4;
     }
