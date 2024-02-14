@@ -6,6 +6,7 @@ import { ApiBearerAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { AuthDTO } from 'src/auth/dto/authDto';
 import { AuthGuard } from 'src/auth/security/auth.guard';
 import { UpdateTodayDto } from './dto/update-today.dto';
+import { todaysFoodDto } from '../food/dto/today-food.dto';
 
 @ApiTags('users')
 @Controller('users')

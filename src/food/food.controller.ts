@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { FoodService } from './food.service';
 import { searchFoodDto } from './dto/search-food.dto';
+import { todaysFoodDto } from './dto/today-food.dto';
 
 @Controller('food')
 export class FoodController {
@@ -14,6 +15,11 @@ export class FoodController {
   @Get('NO/:NO')
   findByNO(@Param('NO') NO: number) {
     return this.foodService.findbyNO(NO);
+  }
+
+  @Post('todays')
+  foodToday(@Body() todayfood: todaysFoodDto) {
+    return this.foodService.todaysfood(todayfood.todaysfood);
   }
 
   @Post('recommendfood')  
