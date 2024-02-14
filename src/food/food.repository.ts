@@ -13,21 +13,28 @@ export class FoodRepository extends Repository<FOOD> {
   }
 
   async foodSearch(food_name: string, group: string) {
+    var searchresult;
     if (group) {
       var li1 = await this.repository.find({ where: { food_name: food_name, DB_group: Like(`${group}`) }});
       var li2 = await this.repository.find({ where: { food_name: Like(`%_${food_name}`), DB_group: Like(`${group}`) } });
       var li3 = await this.repository.find({ where: { food_name: Like(`${food_name}_%`), DB_group: Like(`${group}`) } });
       var li4 = await this.repository.find({ where: { food_name: Like(`%_${food_name}_%`), DB_group: Like(`${group}`) } });
 
-      return li1.concat(li2, li3, li4);
+      searchresult = li1.concat(li2, li3, li4);
     } else{
       var li1 = await this.repository.find({ where: { food_name: food_name } });
       var li2 = await this.repository.find({ where: { food_name: Like(`%_${food_name}`) } });
       var li3 = await this.repository.find({ where: { DB_group: Like(`${food_name}_%`) } });
       var li4 = await this.repository.find({ where: { food_name: Like(`%_${food_name}_%`) } });
       
-      return li1.concat(li2, li3, li4);
+      searchresult = li1.concat(li2, li3, li4);
     }
+    const deduplication = [
+      ...new Map(
+        searchresult.map((m) => [`${m.food_name}_${m.region}`, m]),
+      ).values(),
+    ];
+    return deduplication;
   }
 
   async findByNO(NO: number): Promise<FOOD> {
