@@ -14,6 +14,21 @@ export class FoodService {
   }
 
   recommendbySearch(search: any) {
+    var date = new Date();
+    var now = date.getHours();
+    var chk = 1;
+    console.log(now);
+    if (2 <now && now < 10) {
+      chk = 4;
+    }
+    else if (10 <= now && now < 16) {
+      chk = 2;
+    }
+    search.energy_kcal = search.energy_kcal / chk;
+    search.water_g = search.water_g / chk;
+    search.protein_g = search.protein_g / chk;
+    search.fat_g = search.fat_g / chk;
+    search.carbohydrate_g = search.carbohydrate_g / chk;
     return this.foodRepository.recommendBySearch(search);
   }
 
