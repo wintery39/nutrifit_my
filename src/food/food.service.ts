@@ -32,6 +32,15 @@ export class FoodService {
   }
 
   async todaysfood(todaysfood: string) {
+    if (todaysfood == '') {
+      return {
+        energy_kcal: 0,
+        water_g: 0,
+        protein_g: 0,
+        fat_g: 0,
+        carbohydrate_g: 0,
+      };
+    }
     const foods = todaysfood.split(',');
     var i = 0;
     var nowfood = [];
