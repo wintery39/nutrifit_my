@@ -78,7 +78,7 @@ export class FoodRepository extends Repository<FOOD> {
     const norm = 5
     var key = 2;
     var li = [];
-    const valuesArray = Object.values(search);
+
     while(li.length < 10 && key < 10){
       li = await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), water_g: Between(search.water_g*((100-key)/100),search.water_g*((100+key)/100)), protein_g: Between(search.protein_g*((100-key)/100),search.protein_g*((100+key)/100)), fat_g: Between(search.fat_g*((100-key)/100),search.fat_g*((100+key)/100)), carbohydrate_g: Between(search.carbohydrate_g*((100-key)/100),search.carbohydrate_g*((100+key)/100))}]});
       key+=2;
@@ -92,18 +92,18 @@ export class FoodRepository extends Repository<FOOD> {
       return deduplication;
     }
 
-    let minValue = valuesArray[0]; // 최소값 초기화
+    let minValue = search.nutrifit_percent[0]; // 최소값 초기화
     let minIndex = 0; // 최소값 인덱스 초기화
 
     // 배열을 순회하면서 최소값 및 해당 인덱스 찾기
-    for (let i = 1; i < valuesArray.length; i++) {
-      if (valuesArray[i] < minValue) {
-        minValue = valuesArray[i];
+    for (let i = 1; i < search.nutrifit_percent.length; i++) {
+      if (search.nutrifit_percent[i] < minValue) {
+        minValue = search.nutrifit_percent[i];
         minIndex = i;
       }
     }
     key = 2;
-
+    
     switch (minIndex+1) {
       case 1:
         while(li.length < 10 && key < 10){

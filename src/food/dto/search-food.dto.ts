@@ -36,4 +36,10 @@ export class searchFoodDto{
     })
     @IsNotEmpty()
     carbohydrate_g: number;
+
+    @ApiProperty({
+        example: [20, 30, 20, 20, 10],
+        description: '영양성분 비율',
+    })
+    nutrifit_percent: number[];
 }
