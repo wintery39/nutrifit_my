@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { FoodRepository } from './food.repository';
+import { searchFoodDto } from './dto/search-food.dto';
 
 @Injectable()
 export class FoodService {
@@ -13,7 +14,7 @@ export class FoodService {
     return this.foodRepository.findByNO(NO);    
   }
 
-  recommendbySearch(search: any) {
+  recommendbySearch(search: searchFoodDto) {
     var date = new Date();
     var now = date.getHours();
     var chk = 1;
@@ -24,7 +25,6 @@ export class FoodService {
       chk = 2;
     }
     search.energy_kcal = search.energy_kcal / chk;
-    search.water_g = search.water_g / chk;
     search.protein_g = search.protein_g / chk;
     search.fat_g = search.fat_g / chk;
     search.carbohydrate_g = search.carbohydrate_g / chk;
@@ -41,13 +41,13 @@ export class FoodService {
         carbohydrate_g: 0,
       };
     }
-    const foods = todaysfood.split(',');
+    const foods = todaysfood.split('\\');
     var i = 0;
     var nowfood = [];
     var data = [0,0,0,0,0];
     var temp;
     while (i < foods.length) {
-      nowfood = foods[i].split('_');
+      nowfood = foods[i].split('^');
       temp = await this.foodRepository.findByNO(Number(nowfood[0]));
       data[0] += Number(nowfood[1]) < 0 ? 0 :(temp.energy_kcal) * (Number(nowfood[1])/temp.once);
       data[1] += Number(nowfood[1]) < 0 ? 0 :(temp.water_g) * (Number(nowfood[1])/temp.once);

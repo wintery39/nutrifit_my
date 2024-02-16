@@ -11,13 +11,6 @@ export class searchFoodDto{
 
     @ApiProperty({
         example: 200,
-        description: '수분',
-    })
-    @IsNotEmpty()
-    water_g!: number;
-
-    @ApiProperty({
-        example: 200,
         description: '단백질',
     })
     @IsNotEmpty()
@@ -38,7 +31,7 @@ export class searchFoodDto{
     carbohydrate_g: number;
 
     @ApiProperty({
-        example: [20, 30, 20, 20, 10],
+        example: [20, 20, 20, 10],
         description: '영양성분 비율',
     })
     nutrifit_percent: number[];
