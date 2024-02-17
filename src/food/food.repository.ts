@@ -72,6 +72,11 @@ export class FoodRepository extends Repository<FOOD> {
     }
     key = 2;
     
+    search.energy_kcal = search.energy_kcal < 0 ? 0 : search.energy_kcal;
+    search.protein_g = search.protein_g < 0 ? 0 : search.protein_g;
+    search.fat_g = search.fat_g < 0 ? 0 : search.fat_g;
+    search.carbohydrate_g = search.carbohydrate_g < 0 ? 0 : search.carbohydrate_g;
+
     switch (minIndex+1) {
       case 1:
         while(li.length < 10 && key < 10){
