@@ -42,45 +42,13 @@ export class FoodRepository extends Repository<FOOD> {
     return await this.repository.findOne({ where: { NO } });
   }
 
-  async recommendBySearch2(search: searchFoodDto) {
-    const lack_min = 5, lack_max = 11;
-    const norm = (lack_min+lack_max)/2;
-
-    const valuesArray = Object.values(search);
-
-    let minValue = valuesArray[0]; // 최소값 초기화
-    let minIndex = 0; // 최소값 인덱스 초기화
-
-    // 배열을 순회하면서 최소값 및 해당 인덱스 찾기
-    for (let i = 1; i < valuesArray.length; i++) {
-      if (valuesArray[i] < minValue) {
-        minValue = valuesArray[i];
-        minIndex = i;
-      }
-    }
-    switch (minIndex+1) {
-      case 1:
-        return await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal/lack_max, search.energy_kcal/lack_min), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
-      case 2:
-        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
-      case 3:
-        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), protein_g: Between(search.protein_g/lack_max, search.protein_g/lack_min), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
-      case 4:
-        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), protein_g: LessThan(search.protein_g/norm), fat_g: Between(search.fat_g/lack_max, search.fat_g/lack_min), carbohydrate_g: LessThan(search.carbohydrate_g/norm)}]});
-      case 5:
-        return await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal/norm), protein_g: LessThan(search.protein_g/norm), fat_g: LessThan(search.fat_g/norm), carbohydrate_g: Between(search.carbohydrate_g/lack_max, search.carbohydrate_g/lack_min)}]});
-      default:
-        return 'input error';
-    }
-  }
-
   async recommendBySearch(search: searchFoodDto) {
     const norm = 5
     var key = 2;
     var li = [];
 
     while(li.length < 10 && key < 10){
-      li = await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), protein_g: Between(search.protein_g*((100-key)/100),search.protein_g*((100+key)/100)), fat_g: Between(search.fat_g*((100-key)/100),search.fat_g*((100+key)/100)), carbohydrate_g: Between(search.carbohydrate_g*((100-key)/100),search.carbohydrate_g*((100+key)/100))}]});
+      li = await this.repository.find({where: [{DB_group: '음식', energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), protein_g: Between(search.protein_g*((100-key)/100),search.protein_g*((100+key)/100)), fat_g: Between(search.fat_g*((100-key)/100),search.fat_g*((100+key)/100)), carbohydrate_g: Between(search.carbohydrate_g*((100-key)/100),search.carbohydrate_g*((100+key)/100))}]});
       key+=2;
     }
     if (li.length >= 10) {
@@ -107,25 +75,25 @@ export class FoodRepository extends Repository<FOOD> {
     switch (minIndex+1) {
       case 1:
         while(li.length < 10 && key < 10){
-          li = await this.repository.find({where: [{energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
+          li = await this.repository.find({where: [{DB_group: '음식', energy_kcal: Between(search.energy_kcal*((100-key)/100),search.energy_kcal*((100+key)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
           key+=2;
         }
         break;
       case 2:
         while(li.length < 10 && key < 10){
-          li = await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: Between(search.protein_g*((100-key)/100),search.protein_g*((100+key)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
+          li = await this.repository.find({where: [{DB_group: '음식', energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: Between(search.protein_g*((100-key)/100),search.protein_g*((100+key)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
           key+=2;
         }
         break;
       case 3:
         while(li.length < 10 && key < 10){
-          li = await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: Between(search.fat_g*((100-key)/100), search.fat_g*((100+key)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
+          li = await this.repository.find({where: [{DB_group: '음식', energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: Between(search.fat_g*((100-key)/100), search.fat_g*((100+key)/100)), carbohydrate_g: LessThan(search.carbohydrate_g*((100+norm)/100))}]});
           key+=2;
         }
         break;
       case 4:
         while(li.length < 10 && key < 10){  
-          li = await this.repository.find({where: [{energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: Between(search.carbohydrate_g*((100-key)/100), search.carbohydrate_g*((100+key)/100))}]});
+          li = await this.repository.find({where: [{DB_group: '음식', energy_kcal: LessThan(search.energy_kcal*((100+norm)/100)), protein_g: LessThan(search.protein_g*((100+norm)/100)), fat_g: LessThan(search.fat_g*((100+norm)/100)), carbohydrate_g: Between(search.carbohydrate_g*((100-key)/100), search.carbohydrate_g*((100+key)/100))}]});
           key+=2;
         }
         break;
