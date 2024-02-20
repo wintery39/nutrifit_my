@@ -98,4 +98,441 @@ export class UsersService {
     }
     return;
   }
+
+  @Cron('0 0 0 * * *')
+  async handle0Cron() {
+    const user = new User();
+    user.user_id = '0';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 1 * * *')
+  async handle1Cron() {
+    const user = new User();
+    user.user_id = '1';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 2 * * *')
+  async handle2Cron() {
+    const user = new User();
+    user.user_id = '2';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 3 * * *')
+  async handle3Cron() {
+    const user = new User();
+    user.user_id = '3';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 4 * * *')
+  async handle4Cron() {
+    const user = new User();
+    user.user_id = '4';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 6 * * *')
+  async handle6Cron() {
+    const user = new User();
+    user.user_id = '6';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 7 * * *')
+  async handle7Cron() {
+    const user = new User();
+    user.user_id = '7';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 8 * * *')
+  async handle8Cron() {
+    const user = new User();
+    user.user_id = '8';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 9 * * *')
+  async handle9Cron() {
+    const user = new User();
+    user.user_id = '9';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 10 * * *')
+  async handle10Cron() {
+    const user = new User();
+    user.user_id = '10';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 11 * * *')
+  async handle11Cron() {
+    const user = new User();
+    user.user_id = '11';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 12 * * *')
+  async handle12Cron() {
+    const user = new User();
+    user.user_id = '12';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 13 * * *')
+  async handle13Cron() {
+    const user = new User();
+    user.user_id = '13';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 14 * * *')
+  async handle14Cron() {
+    const user = new User();
+    user.user_id = '14';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 15 * * *')
+  async handle15Cron() {
+    const user = new User();
+    user.user_id = '15';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 16 * * *')
+  async handle16Cron() {
+    const user = new User();
+    user.user_id = '16';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 17 * * *')
+  async handle17Cron() {
+    const user = new User();
+    user.user_id = '17';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 18 * * *')
+  async handle18Cron() {
+    const user = new User();
+    user.user_id = '18';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 19 * * *')
+  async handle19Cron() {
+    const user = new User();
+    user.user_id = '19';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 20 * * *')
+  async handle20Cron() {
+    const user = new User();
+    user.user_id = '20';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 21 * * *')
+  async handle21Cron() {
+    const user = new User();
+    user.user_id = '21';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 22 * * *')
+  async handle22Cron() {
+    const user = new User();
+    user.user_id = '22';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
+
+  @Cron('0 0 23 * * *')
+  async handle23Cron() {
+    const user = new User();
+    user.user_id = '23';
+    user.user_password = '0';
+    user.height = 0;
+    user.weight = 0;
+    user.age = 0;
+    user.activity = 1.2;
+    user.gender = '남';
+    user.todays = '';
+    user.today_energy = 0.0;
+    user.today_water = 0.0;
+    user.today_protein = 0.0;
+    user.today_fat = 0.0;
+    user.today_carbohydrate = 0.0;
+    return this.userRepository.save(user);
+  }
 }
