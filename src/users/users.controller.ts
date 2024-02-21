@@ -108,6 +108,12 @@ export class UsersController {
     return '수정 완료';
   }
 
+  @ApiOperation({ summary: 'remove all' })
+  @Patch('/todaysdelete')
+  removeall() {
+    return this.usersService.removeall();
+  }
+
   @ApiOperation({ summary: 'Remove User (jwt O)' })
   @UseGuards(AuthGuard)
   @Delete('/delete')
