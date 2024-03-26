@@ -5,7 +5,8 @@ import {
   Get,
   Req,
   UseGuards,
-  UnauthorizedException
+  UnauthorizedException,
+  Patch
 } from '@nestjs/common';
 
 import { JwtService } from '@nestjs/jwt/dist';
@@ -14,11 +15,16 @@ import * as bcrypt from 'bcrypt';
 import { AuthDTO } from './dto/authDto';
 import { UsersService } from 'src/users/users.service';
 import { access } from 'fs';
+import { ApiTags } from '@nestjs/swagger';
+import { VerifyDto } from './dto/verify.dto';
+import { AuthService } from './auth.service';
 
+@ApiTags('auth')
 @Controller()
 export class AuthController {
   constructor(private readonly userService: UsersService,
-    private readonly jwtService: JwtService) { }
+    private readonly jwtService: JwtService,
+    private readonly authService: AuthService) { }
 
   @Post('/signin')
   async signin(@Body() authDTO: AuthDTO.SignIn) {
@@ -41,5 +47,15 @@ export class AuthController {
     const accessToken = this.jwtService.sign(payload);
 
     return accessToken;
+  }
+
+  @Patch('/verify')
+  async verify(@Body() Verify: VerifyDto) {
+    return this.authService.sendVerificationEmail(Verify.email);
+  }
+
+  @Post('/confirm')
+  async confirm(@Body() user_info: AuthDTO.checkEmail) {
+    return this.authService.confirmVerificationCode(user_info.id, user_info.code);
   }
 }

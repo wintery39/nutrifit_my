@@ -2,7 +2,9 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestj
 import { FoodService } from './food.service';
 import { searchFoodDto } from './dto/search-food.dto';
 import { todaysFoodDto } from './dto/today-food.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('food')
 @Controller('food')
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}

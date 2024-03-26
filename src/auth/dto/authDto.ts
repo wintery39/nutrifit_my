@@ -20,7 +20,20 @@ export namespace AuthDTO {
       @IsString()
       user_password: string;
     }
-
+    
+    export class checkEmail {
+      @ApiProperty({
+        example: 1,
+        description: 'user_id',
+      })
+      id: number;
+      @ApiProperty({
+        example: '524372',
+        description: 'code',
+      })
+      @IsString()
+      code: string;
+    }
     
 
     export class SignUp {

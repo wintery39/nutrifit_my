@@ -72,6 +72,10 @@ export class UsersService {
     return this.userRepository.update(id, updateTodayDto);
   }
 
+  updateUserVerify(id: number, email: string, code: string) {
+    return this.userRepository.update(id, {email: email, code: code});
+  }
+
   async updateTodaysFood(id: number, todaysFood: todaysFoodDto) {
     var updateTodayDto = new UpdateTodayDto();
     const data = await this.foodService.todaysfood(todaysFood.todaysfood)

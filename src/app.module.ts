@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { FoodModule } from './food/food.module';
 import { FOOD } from './food/entities/food.entity';
 import { ScheduleModule } from '@nestjs/schedule';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     AuthModule,
     UsersModule,
     FoodModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [AppService],

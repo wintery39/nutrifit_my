@@ -106,4 +106,22 @@ export class CreateUserDto {
   })
   @IsNotEmpty()
   today_carbohydrate!: number;
+
+  @ApiProperty({
+    example: 'wintery39@korea.ac.kr',
+    description: 'user email',
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  email!: string;
+
+  @ApiProperty({
+    example: '423141',
+    description: 'user email',
+  })
+  @IsNotEmpty()
+  @IsString()
+  @MaxLength(100)
+  code!: string;
 }

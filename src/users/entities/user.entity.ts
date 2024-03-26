@@ -56,6 +56,12 @@ export class User {
     @Column({ name: 'today_carbohydrate', type: 'float'})
     today_carbohydrate: number;
 
+    @Column({ name: 'email', type: 'varchar', length: 100})
+    email: string;
+
+    @Column({ name: 'code', type: 'varchar', length: 100})
+    code: string;
+
     @CreateDateColumn()
     createdAt: Date;
   
@@ -64,6 +70,7 @@ export class User {
   
     @DeleteDateColumn()
     deletedAt: Date | null;
+
 
     @BeforeInsert()
     private beforeInsert() {
